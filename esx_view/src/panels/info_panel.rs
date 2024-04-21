@@ -1,4 +1,5 @@
-use eframe::egui::{CentralPanel, ScrollArea};
+use eframe::egui::{self, CentralPanel, ScrollArea};
+use egui_extras::{Column, TableBuilder};
 
 use crate::{files::ESxFile, service::ServiceController};
 
@@ -28,7 +29,34 @@ impl super::Panel for InfoPanel {
             let record_count = file.get_all_records().len();
             ui.heading(file.file_name());
             ui.label(format!("Form Version: {}", form_version));
-            ui.label(format!("Records: {}", record_count));
+            ui.label(format!("Record Count: {}", record_count));
+            let mut table = TableBuilder::new(ui);
+            table = table.resizable(true).auto_shrink(false);
+            table = table.sense(egui::Sense::click());
+            table = table
+              .column(Column::initial(80.0).range(20.0..=200.0).clip(true))
+              .column(Column::remainder());
+            let header = |mut header: egui_extras::TableRow<'_, '_>| {
+              header.col(|ui| {
+                ui.strong("Group");
+              });
+              header.col(|ui| {
+                ui.strong("Record Count");
+              });
+            };
+            let body = |mut body: egui_extras::TableBody<'_>| {
+              for group in file.get_top_groups() {
+                body.row(20.0, |mut row| {
+                  row.col(|ui| {
+                    ui.label(group.get_label().to_string());
+                  });
+                  row.col(|ui| {
+                    ui.label(group.get_data().get_records_recurse().len().to_string());
+                  });
+                });
+              }
+            };
+            table.header(20.0, header).body(body);
           }
           None => {
             ui.heading("Welcome to ESX View");
