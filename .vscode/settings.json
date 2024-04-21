@@ -1,0 +1,9 @@
+{
+  "rust-analyzer.linkedProjects": [
+    "./esx_lib/Cargo.toml",
+    "./esx_lib/Cargo.toml",
+    "./esx_lib/Cargo.toml",
+    "./esx_lib/Cargo.toml",
+    "./esx_lib/Cargo.toml"
+  ]
+}

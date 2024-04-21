@@ -1,0 +1,157 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug executable 'esx_view'",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=esx_view",
+          "--package=esx_view"
+        ],
+        "filter": {
+          "name": "esx_view",
+          "kind": "bin"
+        }
+      },
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "debug fingerprint-fields",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=fingerprint-fields",
+          "--package=esx_bin"
+        ],
+        "filter": {
+          "name": "fingerprint-fields",
+          "kind": "bin"
+        }
+      },
+      "args": ["/home/autumn/.local/share/SecondaryDrive/Steam/steamapps/common/Fallout 4/Data/DLCRobot.esm"],
+      "cwd": "${workspaceFolder}"
+    },
+
+
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug unit tests in library 'esx_lib'",
+      "cargo": {
+        "args": [
+          "test",
+          "--no-run",
+          "--lib",
+          "--package=esx_lib"
+        ],
+        "filter": {
+          "name": "esx_lib",
+          "kind": "lib"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug unit tests in library 'esx_bin'",
+      "cargo": {
+        "args": [
+          "test",
+          "--no-run",
+          "--lib",
+          "--package=esx_bin"
+        ],
+        "filter": {
+          "name": "esx_bin",
+          "kind": "lib"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug executable 'list-top-groups'",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=list-top-groups",
+          "--package=esx_bin"
+        ],
+        "filter": {
+          "name": "list-top-groups",
+          "kind": "bin"
+        }
+      },
+      "args": ["/home/autumn/.local/share/SecondaryDrive/Steam/steamapps/common/Fallout 4/Data/Fallout4.esm"],
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug unit tests in executable 'list-top-groups'",
+      "cargo": {
+        "args": [
+          "test",
+          "--no-run",
+          "--bin=list-top-groups",
+          "--package=esx_bin"
+        ],
+        "filter": {
+          "name": "list-top-groups",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug executable 'dump-record-stats'",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=dump-record-stats",
+          "--package=esx_bin"
+        ],
+        "filter": {
+          "name": "dump-record-stats",
+          "kind": "bin"
+        }
+      },
+      "args": ["/home/autumn/.local/share/SecondaryDrive/Steam/steamapps/common/Fallout 4/Data/Fallout4.esm"],
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug unit tests in executable 'dump-record-stats'",
+      "cargo": {
+        "args": [
+          "test",
+          "--no-run",
+          "--bin=dump-record-stats",
+          "--package=esx_bin"
+        ],
+        "filter": {
+          "name": "dump-record-stats",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}

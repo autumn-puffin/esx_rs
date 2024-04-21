@@ -1,0 +1,5 @@
+[workspace]
+members = ["esx_lib", "esx_bin", "esx_view"]
+
+[profile.dev]
+opt-level = 0
