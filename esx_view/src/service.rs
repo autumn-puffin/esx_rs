@@ -1,5 +1,6 @@
 use std::{
   path::PathBuf,
+  rc::Rc,
   sync::{Arc, Mutex},
 };
 
@@ -25,7 +26,7 @@ pub struct ServiceController {
 }
 
 impl ServiceController {
-  pub fn lock_esx(&self) -> std::sync::MutexGuard<'_, ESXService> {
+  fn lock_esx(&self) -> std::sync::MutexGuard<'_, ESXService> {
     self.esx_service.lock().unwrap()
   }
 }
@@ -41,9 +42,11 @@ impl ServiceController {
     self.lock_esx().loader.esx_list_mut().remove(index);
     Ok(())
   }
-
-  pub fn get_esx_file(&self, index: usize) -> Option<ESxFile> {
+  pub fn get_esx_file(&self, index: usize) -> Option<Rc<ESxFile>> {
     self.lock_esx().loader.esx_list().get(index).cloned()
+  }
+  pub fn get_esx_list(&self) -> Vec<Rc<ESxFile>> {
+    self.lock_esx().loader.esx_list().clone()
   }
 
   pub fn set_active_file(&self, index: usize) {

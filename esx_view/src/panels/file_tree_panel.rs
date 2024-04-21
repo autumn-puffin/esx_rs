@@ -49,10 +49,8 @@ impl super::Panel for FileTreePanel {
           });
         };
         let body = |mut body: egui_extras::TableBody<'_>| {
-          let service = self.service.clone();
-          let selection = service.get_active_file();
-          let lock = service.lock_esx();
-          let files = lock.loader().esx_list();
+          let selection = self.service.get_active_file();
+          let files = self.service.get_esx_list();
           for (index, file) in files.iter().enumerate() {
             body.row(20.0, |mut row| {
               row.set_selected(Some(index) == selection);

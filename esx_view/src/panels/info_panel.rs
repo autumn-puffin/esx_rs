@@ -14,7 +14,7 @@ impl InfoPanel {
 impl super::Panel for InfoPanel {
   #[inline]
   fn draw(&mut self, ctx: &eframe::egui::Context) {
-    let file: Option<ESxFile> = match self.service.get_active_file() {
+    let file = match self.service.get_active_file() {
       Some(index) => self.service.get_esx_file(index),
       None => None,
     };

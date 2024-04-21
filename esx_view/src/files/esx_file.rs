@@ -4,7 +4,7 @@ use std::{ops::Deref, path::PathBuf};
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct ESxFile {
   file_path: PathBuf,
-  esx: ESx,
+  esx: Box<ESx>,
 }
 
 impl Deref for ESxFile {
@@ -16,6 +16,7 @@ impl Deref for ESxFile {
 
 impl ESxFile {
   pub fn new(file_path: PathBuf, esx: ESx) -> Self {
+    let esx = Box::new(esx);
     ESxFile { esx, file_path }
   }
 }
