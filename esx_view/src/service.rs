@@ -12,12 +12,8 @@ pub mod loader;
 #[derive(Debug, Default)]
 pub struct ESXService {
   loader: ESxLoader,
+
   active_file: Option<usize>,
-}
-impl ESXService {
-  pub fn loader(&self) -> &ESxLoader {
-    &self.loader
-  }
 }
 
 #[derive(Debug, Default, Clone)]
@@ -42,6 +38,7 @@ impl ServiceController {
     self.lock_esx().loader.esx_list_mut().remove(index);
     Ok(())
   }
+
   pub fn get_esx_file(&self, index: usize) -> Option<Rc<ESxFile>> {
     self.lock_esx().loader.esx_list().get(index).cloned()
   }

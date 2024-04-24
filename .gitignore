@@ -1,3 +1,5 @@
 /target
 /Cargo.lock
 /stat reports
+perf.data*
+flamegraph.svg

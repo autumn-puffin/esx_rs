@@ -50,6 +50,7 @@ impl GroupData {
     match self {
       Self::Empty | Self::Raw(_) => {}
       Self::Structured(s) => {
+        records.reserve_exact(s.len());
         for component in s {
           if let GroupDataComponent::Record(r) = component {
             records.push(r)
@@ -57,13 +58,17 @@ impl GroupData {
         }
       }
     };
+    records.shrink_to_fit();
     records
   }
   pub fn get_records_recurse(&self) -> Vec<&Record> {
     let mut records: Vec<&Record> = vec![];
+    let mut groups_expanded: Vec<Vec<&Record>> = vec![];
     match self {
       Self::Empty | Self::Raw(_) => {}
       Self::Structured(s) => {
+        records.reserve_exact(s.len());
+        groups_expanded.reserve_exact(s.len());
         for component in s {
           match component {
             GroupDataComponent::Record(r) => records.push(r),
@@ -73,6 +78,15 @@ impl GroupData {
         }
       }
     };
+    let mut add_cap = 0;
+    for g in &groups_expanded {
+      add_cap += g.len();
+    }
+    records.reserve_exact(add_cap);
+    for g in groups_expanded {
+      records.append(&mut g.clone());
+    }
+    records.shrink_to_fit();
     records
   }
   pub fn get_subgroups(&self) -> Vec<&Group> {
@@ -80,6 +94,7 @@ impl GroupData {
     match self {
       Self::Empty | Self::Raw(_) => {}
       Self::Structured(s) => {
+        groups.reserve_exact(s.len());
         for component in s {
           if let GroupDataComponent::Group(g) = component {
             groups.push(g)
@@ -87,6 +102,7 @@ impl GroupData {
         }
       }
     };
+    groups.shrink_to_fit();
     groups
   }
 }
