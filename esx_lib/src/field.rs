@@ -2,9 +2,6 @@ use crate::{signature::Signature, Error, Result};
 use bytes::{Buf, BufMut, Bytes, BytesMut};
 use serde::{Deserialize, Serialize};
 
-mod structured;
-pub use structured::StructuredField;
-
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, Hash)]
 pub enum FieldData {
   Empty,
