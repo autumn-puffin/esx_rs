@@ -3,7 +3,10 @@ use std::fmt::{Display, Formatter, Result as fmtResult};
 use bytes::{BufMut, Bytes, BytesMut};
 use serde::{Deserialize, Serialize};
 
-use crate::{form_id::FormID, signature::Signature, Error, Result};
+use crate::{
+  types::{FormID, Signature},
+  Error, Result,
+};
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, Hash)]
 pub enum GroupLabel {

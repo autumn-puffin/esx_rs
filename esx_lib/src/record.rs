@@ -2,10 +2,7 @@ use bytes::{Buf, BufMut, Bytes, BytesMut};
 use flate2::Decompress;
 use serde::{Deserialize, Serialize};
 
-use crate::{
-  field::Field, form_id::FormID, signature::Signature, timestamp::Timestamp, vcs_info::VcsInfo,
-  Error, Result,
-};
+use crate::{field::Field, types::*, Error, Result};
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, Hash)]
 pub enum RecordData {

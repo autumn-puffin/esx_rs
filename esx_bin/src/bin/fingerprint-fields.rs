@@ -6,7 +6,7 @@ use esx_bin::{
   load,
   statistics::fingerprinting::{FieldFingerprint, FieldFingerprinting},
 };
-use esx_lib::{field::Field, signature::Signature};
+use esx_lib::{field::Field, types::Signature};
 
 fn main() {
   let args: Vec<String> = std::env::args().collect();

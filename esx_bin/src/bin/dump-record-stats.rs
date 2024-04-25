@@ -7,7 +7,7 @@ use esx_bin::{
   load,
   statistics::{get_signatures, RecordTypeLayout},
 };
-use esx_lib::{record::Record, signature::Signature};
+use esx_lib::{record::Record, types::Signature};
 
 // Dump record statistics of an ESX file
 fn main() {

@@ -1,4 +1,4 @@
-use crate::{signature::Signature, Error, Result};
+use crate::{types::Signature, Error, Result};
 use bytes::{Buf, BufMut, Bytes, BytesMut};
 use serde::{Deserialize, Serialize};
 
