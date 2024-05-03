@@ -1,6 +1,7 @@
-use std::fmt::{Display, Formatter, Result as fmtResult};
-
-use crate::{Error, Result};
+use crate::{
+  types::{Timestamp, VcsInfo},
+  Error, Result,
+};
 use bytes::{Buf, BufMut, Bytes, BytesMut};
 use serde::{Deserialize, Serialize};
 
@@ -12,8 +13,8 @@ pub use group_type::GroupLabel;
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, Hash)]
 pub struct Group {
   label: GroupLabel,
-  raw_timestamp: u16,
-  raw_vcs_info: u16,
+  timestamp: Timestamp,
+  vcs_info: VcsInfo,
   _unknown_1: u32,
   data: GroupData,
 }
@@ -47,8 +48,8 @@ impl Group {
         label,
         label_type: header.get_u32_le(),
       },
-      raw_timestamp: header.get_u16_le(),
-      raw_vcs_info: header.get_u16_le(),
+      timestamp: header.get_u16_le().into(),
+      vcs_info: header.get_u16_le().into(),
       _unknown_1: header.get_u32_le(),
       data: GroupData::Raw(data),
     })
@@ -62,8 +63,8 @@ impl Group {
     bytes.put(b"GRUP".as_slice());
     bytes.put_u32_le(data_len as u32);
     bytes.put(self.label.as_bytes());
-    bytes.put_u16_le(self.raw_timestamp);
-    bytes.put_u16_le(self.raw_vcs_info);
+    bytes.put_u16_le(self.timestamp.into());
+    bytes.put_u16_le(self.vcs_info.into());
     bytes.put_u32_le(self._unknown_1);
     bytes.put(data);
 
@@ -75,11 +76,11 @@ impl Group {
   pub fn get_label(&self) -> &GroupLabel {
     &self.label
   }
-  pub fn raw_timestamp(&self) -> &u16 {
-    &self.raw_timestamp
+  pub fn get_timestamp(&self) -> &Timestamp {
+    &self.timestamp
   }
-  pub fn raw_vcs_info(&self) -> &u16 {
-    &self.raw_vcs_info
+  pub fn get_vcs_info(&self) -> &VcsInfo {
+    &self.vcs_info
   }
   pub fn get_data(&self) -> &GroupData {
     &self.data
@@ -102,15 +103,5 @@ impl Group {
       Ok(d) => self.data = d,
       Err(e) => eprintln!("Error processing Group Data: {:?}", e),
     }
-  }
-}
-
-impl Display for Group {
-  fn fmt(&self, f: &mut Formatter) -> fmtResult {
-    write!(
-      f,
-      "Group:\n\tType: {}\n\tTimestamp: {}\n\tVCS Info: {}\n\tData: {}",
-      self.label, self.raw_timestamp, self.raw_vcs_info, self.data
-    )
   }
 }
