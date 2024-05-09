@@ -1,7 +1,7 @@
 // Intended Usage: field-analysis --file <path> --record <record-sig> --field <field-sig> --form-version <form-version>
 // Dump all fields of a specific type from a specific record type and optionally a specific form version
 
-use esx_lib::{field::Field, record::Record, types::FormID};
+use esx_lib::{types::FormID, Field, Record};
 
 fn main() {
   let args: Vec<String> = std::env::args().collect();

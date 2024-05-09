@@ -1,7 +1,6 @@
 use std::fmt::{Display, Formatter, Result as fmtResult};
 
-use super::Group;
-use crate::{record::Record, Result};
+use crate::{Group, Record, Result};
 use bytes::{BufMut, Bytes, BytesMut};
 use serde::{Deserialize, Serialize};
 

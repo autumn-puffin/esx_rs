@@ -4,7 +4,7 @@ use std::{
   usize,
 };
 
-use esx_lib::{esx::ESx, record::Record, types::Signature};
+use esx_lib::{types::Signature, ESx, Record};
 
 pub mod fingerprinting;
 

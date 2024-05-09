@@ -1,7 +1,7 @@
 use std::{fs::File, path::PathBuf, rc::Rc};
 
 use crate::{files::ESxFile, Result};
-use esx_lib::esx::ESx;
+use esx_lib::ESx;
 
 #[derive(Debug, Default)]
 pub struct ESxLoader {

@@ -1,6 +1,6 @@
 use std::{fs::File, io::Read};
 
-use crate::{group::Group, record::Record, Error, Result};
+use crate::{Error, Group, Record, Result};
 use bytes::{BufMut, Bytes, BytesMut};
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, Hash)]

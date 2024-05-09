@@ -1,4 +1,4 @@
-use esx_lib::esx::ESx;
+use esx_lib::ESx;
 use std::{ops::Deref, path::PathBuf};
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]

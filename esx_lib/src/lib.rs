@@ -23,3 +23,8 @@ pub mod field;
 pub mod group;
 pub mod record;
 pub mod types;
+
+pub use esx::ESx;
+pub use field::Field;
+pub use group::Group;
+pub use record::Record;
