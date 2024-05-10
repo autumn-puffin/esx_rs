@@ -5,8 +5,10 @@ use crate::{
 use bytes::{Buf, BufMut, Bytes, BytesMut};
 use serde::{Deserialize, Serialize};
 
+mod group_child;
 mod group_data;
 mod group_type;
+pub use group_child::GroupChild;
 pub use group_data::GroupData;
 pub use group_type::GroupLabel;
 
