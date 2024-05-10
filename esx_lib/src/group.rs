@@ -107,3 +107,14 @@ impl Group {
     }
   }
 }
+
+impl Ord for Group {
+  fn cmp(&self, other: &Self) -> std::cmp::Ordering {
+    self.label.cmp(&other.label)
+  }
+}
+impl PartialOrd for Group {
+  fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
+    Some(self.cmp(other))
+  }
+}

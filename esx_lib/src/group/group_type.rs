@@ -8,9 +8,8 @@ use crate::{
   Error, Result,
 };
 
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize, Hash, PartialOrd, Ord)]
 pub enum GroupLabel {
-  Raw { label: [u8; 4], label_type: u32 },
   Top(Signature),                          // 0 // Record type
   WorldChildren(FormID),                   // 1 // Parent worldspace
   InteriorCellBlock(i32),                  // 2 // Block Number
@@ -22,6 +21,7 @@ pub enum GroupLabel {
   CellPersistentChildren(FormID),          // 8 // Parent cell
   CellTemporaryChildren(FormID),           // 9 // Parent cell
   QuestScene(FormID),                      // 10 // Parent quest
+  Raw { label: [u8; 4], label_type: u32 },
 }
 /// Conversion
 impl GroupLabel {
